@@ -31,3 +31,12 @@ function myFunction() {
 // AR = 1*a+2*b+3*c+4*d+5*e/(R) this will be the average rating of the output in a furmula where a,b,c,d,e are the scores of the 5 stars and R is the number of reviews
 // the output will be a number between 1 and 5 < i think 
 // https://calculator.academy/average-rating-calculator-star-rating/#f1p1|f2p0 link to where i got it 
+
+
+
+
+
+let averageRating = 1*a+2*b+3*c+4*d+5*e/(R) // R is reviews 
+
+
+
