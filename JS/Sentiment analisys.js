@@ -32,7 +32,7 @@ function myFunction() {
 // the output will be a number between 1 and 5 < i think 
 // https://calculator.academy/average-rating-calculator-star-rating/#f1p1|f2p0 link to where i got it 
 
-
+//https://www.w3schools.com/ai/ai_chartjs.asp link to chart.js
 
 
 
