@@ -15,7 +15,8 @@ function myFunction() {
 	query({"inputs": "Its okay if you dont like me. Not everyone has good taste."}).then((response) => {
 
 
-		console.log(JSON.stringify(response));
+		result = (JSON.stringify(response));
+		console.log(result);
 
 
 	});
@@ -38,5 +39,6 @@ function myFunction() {
 
 let averageRating = 1*a+2*b+3*c+4*d+5*e/(R) // R is reviews 
 
-
-
+fun
+// printing result on html for easy testing
+document.getElementById("demo").innerHTML = result;
