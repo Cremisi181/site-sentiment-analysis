@@ -2,7 +2,7 @@
 
 
 
-
+ 
 
 
 
@@ -32,14 +32,9 @@
 
 
 
+var outputarray = []; // this is the array that will contain the output of the model
 
-
-
-
-
-
-
-function getSentiment() {
+function getSentiment(varInputData) {
 	async function query(data) {
 		const response = await fetch(
 			"https://api-inference.huggingface.co/models/nlptown/bert-base-multilingual-uncased-sentiment",
@@ -50,90 +45,25 @@ function getSentiment() {
 			}
 		);
 		const result = await response.json();
+		
 		return result;
 	}
-	query({"inputs": "Its okay if you dont like me. Not everyone has good taste."}).then((response) => {
-
+	query({"inputs":varInputData}).then((response) => {
 		// console.log(response);
-		// let change = response.flat();
-		 let change = response.flat();
-		 change.forEach(function(change) {
-			console.log('label: ' + change.label);
-			console.log('score: ' + change.score);
-		 });
-			// let testarray = [
-			// 	{
-			// 		"label": "1 star",
-			// 		"score": 0.015068842098116875
-			// 	},
-			// 	{
-			// 		"label": "2 stars",
-			// 		"score": 0.18974360823631287
-			// 	},
-			// 	{
-			// 		"label": "3 stars",
-			// 		"score": 0.7407901287078857
-			// 	},
-			// 	{
-			// 		"label": "4 stars",
-			// 		"score": 0.05091848596930504
-			// 	},
-		
-			//    {
-			// 		"label": "5 stars",
-			// 		"score": 0.003478970378637314
-			// 	}
-			// ];
-
-			
-			// testarray.forEach(function(testarray) {
-			// 	console.log('label: ' + testarray.label);
-			// 	console.log('score: ' + testarray.score);
-			// });
-
-
-
-		// let tryout =[
-		// 	{
-		// 		label: '1 star',
-		// 		score: 0.015068842098116875
-		// 	},
-		// 	{
-		// 		label: '2 stars',
-		// 		score: 0.18974360823631287
-		// 	},
-		// 	{
-		// 		label: '3 stars',
-		// 		score: 0.7407901287078857
-		// 		},
-		// 	{
-		// 		label: '4 stars',
-		// 		score: 0.05091848596930504
-		// 		},
-		// 	{
-		// 		label: '5 stars',
-		// 		score: 0.003
-		// 		}];
-
-
-	// 	tryout.forEach(function(tryout) {	
-	// 		console.log('label: ' + response.label);
-	// 		console.log('score: ' + response.password);
-	//   });
-
-		// json is already parsed to js array oops 
-
-
-	});
-
-	
+		outputarray.push(response);
+		return response;
+		// response = response.flat(); //The output is an array of arrays, so we flatten it to get a single array
+	}); // this is the function that will be called when the model is done processing the data
 }
 
 
 
+function testSentiment() {
+	idknamelmoa = ["I love you","i hate you","youre ok i guess",];
+	console.log(getSentiment(idknamelmoa));
+	console.log(outputarray)
 
-
-
+}
 
 
 
