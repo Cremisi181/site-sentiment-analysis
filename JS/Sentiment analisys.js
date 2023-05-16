@@ -32,59 +32,56 @@
 
 
 
-var outputarray = []; // this is the array that will contain the output of the model
+let rawOutputArray = []; // this is the array that will contain the output of the model
+let averageRatingArray = []; // this is the variable that will contain the average rating of the output
+
+
+
+async function query(data) {
+	const response = await fetch(
+		"https://api-inference.huggingface.co/models/nlptown/bert-base-multilingual-uncased-sentiment",
+		{
+			headers: { Authorization: "Bearer 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" },
+			method: "POST",
+			body: JSON.stringify(data),
+		}
+	);
+	const result = await response.json();
+	return result;
+}
 
 function getSentiment(varInputData) {
-	async function query(data) {
-		const response = await fetch(
-			"https://api-inference.huggingface.co/models/nlptown/bert-base-multilingual-uncased-sentiment",
-			{
-				headers: { Authorization: "Bearer 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" },
-				method: "POST",
-				body: JSON.stringify(data),
-			}
-		);
-		const result = await response.json();
-		
-		return result;
+	query({"inputs": varInputData}).then((response) => {
+
+		let arrSentiment = response;
+		rawOutputArray = arrSentiment;
+		//response = response.flat(); The output is an array of arrays, so we flatten it to get a single array
+	});
+}
+
+
+
+function inputSentiment() {
+	idknamelmoa = ["Five Stars", "Four Stars", "Three Stars", "Two Stars", "One Star"];
+	getSentiment(idknamelmoa);
+	console.log(rawOutputArray)
+}
+
+function convertToAverage() {
+		let counter = 0;
+		rawOutputArray.forEach(element => {
+			var a = rawOutputArray[counter][0].score;
+			var b = rawOutputArray[counter][1].score;
+			var c = rawOutputArray[counter][2].score;
+			var d = rawOutputArray[counter][3].score;
+			var e = rawOutputArray[counter][4].score;
+			counter++;
+			//console.log(counter);
+			//console.log(a,b,c,d,e);
+			var result = 1*a+2*b+3*c+4*d+5*e;
+			console.log(result);
+			averageRatingArray.push(result);
+			console.log(averageRatingArray);
+		});
+			
 	}
-	query({"inputs":varInputData}).then((response) => {
-		// console.log(response);
-		outputarray.push(response);
-		return response;
-		// response = response.flat(); //The output is an array of arrays, so we flatten it to get a single array
-	}); // this is the function that will be called when the model is done processing the data
-}
-
-
-
-function testSentiment() {
-	idknamelmoa = ["I love you","i hate you","youre ok i guess",];
-	console.log(getSentiment(idknamelmoa));
-	console.log(outputarray)
-
-}
-
-
-
-
-
-// function convertToAvrage() {
-	 
-
-// 	 var a = 
-// 	 var b = 
-// 	 var c = 
-// 	 var d = 
-// 	 var e = 
-// 	 var R = 
-// 	 var result = 1*a+2*b+3*c+4*d+5*e/(R);
-// 	 document.getElementById("demo").innerHTML = result;
-// }
-
-
-// let averageRating = 1*a+2*b+3*c+4*d+5*e/(R) // R is reviews 
-
-
-
-   
