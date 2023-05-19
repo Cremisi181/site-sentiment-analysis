@@ -1,22 +1,10 @@
 // Code by: Cremisi 181
 
 
-
- 
-
-
-
-
-
 //https://www.w3schools.com/ai/ai_chartjs.asp link to chart.js
 
 
-
-
 // COMMENTS BELOW ARE OUTDATED AND WILL BE CHANGED SOON
-
-
-
 
 
 // the outputs an array of json objects with the following structure:
@@ -31,11 +19,11 @@
 // https://calculator.academy/average-rating-calculator-star-rating/#f1p1|f2p0 link to where i got it 
 
 
-
 let rawOutputArray = []; // this is the array that will contain the output of the model
 let averageRatingArray = []; // this is the variable that will contain the average rating of the output
-
-
+let roundedAverageRatingArray = []; // this is the variable that will contain the rounded average rating of the output
+let posNegarray = []; // this is the variable that will contain the positive and negative reviews
+let countedRatingArray = []; // this is the variable that will contain the number of reviews for each rating
 
 async function query(data) {
 	const response = await fetch(
@@ -59,10 +47,10 @@ function getSentiment(varInputData) {
 	});
 }
 
-
+ 
 
 function inputSentiment() {
-	idknamelmoa = ["Five Stars", "Four Stars", "Three Stars", "Two Stars", "One Star"];
+	idknamelmoa = ["i like this product, NOT", "I recomender this product to a five year old", "This product is not usefull if you dont know how to use it"];
 	getSentiment(idknamelmoa);
 	console.log(rawOutputArray)
 }
@@ -83,5 +71,76 @@ function convertToAverage() {
 			averageRatingArray.push(result);
 			console.log(averageRatingArray);
 		});
-			
+		
 	}
+
+
+function convertData() {
+	let counter = 0;
+	averageRatingArray.forEach(element => {
+		var a = averageRatingArray[counter];
+		counter++;
+		var result = Math.round(a);
+		roundedAverageRatingArray.push(result);
+	});
+	let counter1 = 0;
+	console.log(roundedAverageRatingArray);
+
+	
+	roundedAverageRatingArray.forEach(element => {
+		if (roundedAverageRatingArray[counter1] >= 4) {
+			posNegarray.push(true);
+		}
+		else {
+			posNegarray.push(false);
+		}
+		counter1++;
+	});
+	console.log(posNegarray);
+
+
+	let counter2 = 0;
+	let onestar = 0;
+	let twostar = 0;
+	let threestar = 0;
+	let fourstar = 0;
+	let fivestar = 0;
+	roundedAverageRatingArray.forEach(element => {
+		if (roundedAverageRatingArray[counter2] == 1) {
+			onestar++;
+		}
+		else if (roundedAverageRatingArray[counter2] == 2) {
+			twostar++;
+		}
+		else if (roundedAverageRatingArray[counter2] == 3) {
+			threestar++;
+		}
+		else if (roundedAverageRatingArray[counter2] == 4) {
+			fourstar++;
+		}
+		else if (roundedAverageRatingArray[counter2] == 5) {
+			fivestar++;
+		}
+		counter2++;
+	});
+	countedRatingArray = [onestar, twostar, threestar, fourstar, fivestar];
+	console.log(countedRatingArray);
+}
+
+// var xValues = ["one", "two", "three", "four", "five"];
+// var yValues = [0, 0, 1, 3, 1];
+// var barColors = ["red", "green","blue","orange","brown"];
+
+// new Chart("myChart", {
+//   type: "bar",
+//   data: {
+//     labels: xValues,
+//     datasets: [{
+//       backgroundColor: barColors,
+//       data: yValues
+//     }]
+//   },
+
+// });
+
+	 

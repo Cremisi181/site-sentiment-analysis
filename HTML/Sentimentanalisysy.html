@@ -7,14 +7,24 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/CSS/centi.css">
+
     </head>
     <body>
         <!-- watch the paths they are unstable  and tend to break on minor changes (like all paths duh)-->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+        </script>
+        <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+
+
+
+
+        
         <script src="/JS/Sentiment analisys.js" async defer></script>    
         <button onclick="convertToAverage()">get</button>
         <button onclick="inputSentiment()">test</button>
-        
-        <p id="demo"></p>
+        <button onclick="convertData()">round</button>
+ 
         
 
     </body>
