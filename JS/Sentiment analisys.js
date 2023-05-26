@@ -50,7 +50,7 @@ function getSentiment(varInputData) {
  
 
 function inputSentiment() {
-	idknamelmoa = ["i like this product, NOT", "I recomender this product to a five year old", "This product is not usefull if you dont know how to use it"];
+	idknamelmoa = ["i like this product, NOT", "I recomender this product to a five year old", "This product is not usefull if you dont know how to use it","BREAKING NEWS: Mark Zuckerberg and META Fined A RECORD $1.3 Billion by the EU for Violating Privacy Laws. ELON MUSK WILL PUT FACEBOOK OUT OF BUSINESS SOONER RATHER THAN LATER!"];
 	getSentiment(idknamelmoa);
 	console.log(rawOutputArray)
 }
